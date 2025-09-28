@@ -1,10 +1,42 @@
 package com.example.learningkotlin
+import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 
-fun main(){
-   val i= factorial(5)
-    //println(i)
-    //nullCheck()
-    evenFilter(5)
+fun main() {
+    println("Choose an option:")
+    println("1. Factorial")
+    println("2. Null Check")
+    println("3. Even Filter")
+    println("4. Largest of Three")
+    println("5. Palindrome Check")
+    println("6. Corouitne Delay")
+    val choice = readLine()!!.toInt()
+
+    when (choice) {
+        1 -> {
+            println("Enter a number:")
+            val n = readLine()!!.toInt()
+            println("Factorial of $n = ${factorial(n)}")
+        }
+        2 -> nullCheck()
+        3 -> {
+            println("How many numbers do you want to enter?")
+            val n = readLine()!!.toInt()
+            evenFilter(n)
+        }
+        4 -> largestOfThree()
+        5 -> {
+            println("Enter a word:")
+            val word = readLine()!!
+            if (word.isPalindrome()) {
+                println("$word is a palindrome")
+            } else {
+                println("$word is not a palindrome")
+            }
+        }
+        6 -> coRoutineDelay()
+        else -> println("Invalid choice")
+    }
 }
 fun largestOfThree(){
     println("Enter First Input")
@@ -17,6 +49,7 @@ fun largestOfThree(){
     if(a>b&&a>c) max=a
     else if(b>a&&b>c) max=b
     else max=c
+    println("The largest Number is $max")
 }
 
 fun factorial(n:Int):Int{
@@ -44,7 +77,7 @@ fun evenFilter(n:Int){
     var num: MutableList<Int> = mutableListOf<Int>()
     for(it in 1..n){
         println("ENter The $it element ")
-        var entry = readLine()!!.toInt()
+        val entry = readLine()!!.toInt()
         num.add(entry)
     }
     println("Even Numbers are:")
@@ -60,9 +93,17 @@ fun evenFilter(n:Int){
 
 //fun operate(){}
 
-fun String.isPalindrom() : Boolean {
+fun String.isPalindrome() : Boolean {
     if (this == this.reversed()) {
         return true
     }
     else return false
+}
+
+
+fun coRoutineDelay(){
+    runBlocking {
+        delay(2000)
+        println("Done!")
+    }
 }
