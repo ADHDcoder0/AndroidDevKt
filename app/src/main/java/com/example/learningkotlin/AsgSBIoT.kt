@@ -58,4 +58,11 @@ fun evenFilter(n:Int){
     num.filter{it%2 ==0}.forEach {println(it) }
 }
 
+//fun operate(){}
 
+fun String.isPalindrom() : Boolean {
+    if (this == this.reversed()) {
+        return true
+    }
+    else return false
+}
